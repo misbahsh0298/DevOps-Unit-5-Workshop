@@ -1,32 +1,25 @@
 name: Continuous Integration
 on: [push]
-
+ 
 jobs:
   build:
     name: Build and test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Hello world
-        uses: actions/hello-world-javascript-action@v1.1
-        with:
-          who-to-greet: 'Mona the Octocat'
-
-      - name: dotnet build
-        run: dotnet build
-
-      - name: npm install
-        run: npm install
-        working-directory: DotnetTemplate.Web
-
-      - name: dotnet test
-        run: dotnet test
-
-      - name: npm test
-        run: npm t
-        working-directory: DotnetTemplate.Web
-
-      - name: npm lint
-        run: npm run lint
-        working-directory: DotnetTemplate.Web
+    - uses: actions/checkout@v4
+ 
+    - name: Hello world
+      uses: actions/hello-world-javascript-action@v1.1 # Name of the action. This uses https://github.com/actions/hello-world-javascript-action
+      with: # This section is needed if you need to pass arguments to the action
+        who-to-greet: 'Mona the Octocat'
+ 
+ 
+    - name: commands
+      run: dotnet build
+    - run: npm install
+      working-directory: 'DotnetTemplate.Web'
+    - run: dotnet test
+    - run: npm t
+      working-directory: 'DotnetTemplate.Web'
+    - run: npm run lint
+      working-directory: 'DotnetTemplate.Web'
